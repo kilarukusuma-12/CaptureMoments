@@ -222,7 +222,7 @@ def booking():
     
     return render_template('booking.html', event_type=event_type)
 
-@app.route('/success')
+@app.route('/success',methods=['GET', 'POST'])
 def success():
     if 'username' not in session:
         return redirect(url_for('login'))
