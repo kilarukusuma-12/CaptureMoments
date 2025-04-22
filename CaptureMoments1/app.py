@@ -227,17 +227,8 @@ def success():
     if 'username' not in session:
         return redirect(url_for('login'))
     
-    booking_id = session.get('last_booking_id')
-    booking_details = None
-    
-    if booking_id:
-        try:
-            response = bookings_table.get_item(Key={'booking_id': booking_id})
-            booking_details = response.get('Item')
-        except ClientError as e:
-            logger.error(f"Error retrieving booking details: {e}")
-    
-    return render_template('success.html', booking=booking_details)
+    # Just render the success template without passing booking details
+    return render_template('success.html')
 
 @app.route('/contact')
 def contact():
